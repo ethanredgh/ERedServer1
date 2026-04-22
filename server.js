@@ -56,6 +56,7 @@ const playerlist = {
             room: roomCode,
             x: isFirstPlayer ? 550 : 700,
             y: 300,
+            z: 0,
         };
 
         this.players.push(player);
@@ -63,11 +64,12 @@ const playerlist = {
     },
     
     // Atualiza a posição de um jogador específico
-    update: function(uuid, newX, newY) {
+    update: function(uuid, newX, newY, newZ) {
         const player = this.get(uuid);
         if (player) {
             player.x = newX;
             player.y = newY;
+            player.z = newZ;
         }
     },
     
@@ -218,7 +220,8 @@ wss.on("connection", (socket) => {
                                 content: {
                                     uuid: uuid,
                                     x: data.content.x,
-                                    y: data.content.y
+                                    y: data.content.y,
+                                    z: data.content.z
                                 }
                             }));
                         }
