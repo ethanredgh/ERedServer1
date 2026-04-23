@@ -1,65 +1,83 @@
-# Servidor WebSocket para o Addon "Simple Multiplayer" da Godot
 
-Este repositório contém o código-fonte do servidor Node.js projetado para funcionar com o [Simple WebSocket Multiplayer for Godot](https://github.com/welson-rodrigues/GodotWebSocketMultiplayer).
+# WebSocket Server for the "Simple Multiplayer" Addon by Godot
 
-O servidor é construído com Express e a biblioteca `ws`, fornecendo uma solução leve e eficiente para gerenciar salas de jogo, jogadores e sincronização de dados básicos.
+This repository contains the source code for the Node.js server designed to work with the [Simple WebSocket Multiplayer for Godot](https://github.com/welson-rodrigues/GodotWebSocketMultiplayer).
 
-## Funcionalidades
+The server is built with Express and the `ws` library, providing a lightweight and efficient solution for managing game rooms, players, and basic data synchronization.
 
-* Gerenciamento de conexões de clientes via WebSocket.
-* Criação de salas com códigos únicos.
-* Gerenciamento de entrada e saída de jogadores nas salas.
-* Broadcast de eventos (novo jogador, desconexão, posições) para os jogadores na mesma sala.
-* Estrutura básica para adicionar novas mensagens de gameplay (ex: chat, ataques).
+## Features
 
-## Como Rodar
+* Management of client connections via WebSocket.
 
-### Pré-requisitos
+* Creation of rooms with unique codes.
 
-* [Node.js](https://nodejs.org/) (versão 14 ou superior recomendada)
-* [npm](https://www.npmjs.com/) (geralmente instalado junto com o Node.js)
+* Management of player entry and exit from rooms.
 
-### 1. Configuração Local (para Desenvolvimento)
+* Broadcast of events (new player, disconnection, positions) to players in the same room.
 
-1.  Clone este repositório:
-    ```sh
-    git clone https://github.com/welson-rodrigues/GodotWebSocketMultiplayer
-    ```
-2.  Navegue até a pasta do projeto:
-    ```sh
-    cd GodotWebSocketMultiplayer
-    ```
-3.  Instale as dependências necessárias:
-    ```sh
-    npm install
-    ```
-4.  Inicie o servidor:
-    ```sh
-    node server.js
-    ```
-    Por padrão, o servidor irá rodar na porta `9090`. Seu cliente Godot deve se conectar em `ws://localhost:9090`.
+* Basic structure for adding new gameplay messages (e.g., chat, attacks).
 
-### 2. Deploy Online (para Produção)
+## How to Run
 
-Este servidor está pronto para ser hospedado em diversas plataformas de "Platform as a Service" (PaaS).
+### Prerequisites
 
-#### Exemplo com Render.com
+* Node.js (version 14 or higher recommended)
+* npm (usually installed with Node.js)
+* 
+### 1. Local Setup (for Development)
 
-O Render.com oferece um plano gratuito ideal para hospedar este tipo de servidor.
+1. Clone this repository:
 
-1.  Faça um "fork" deste repositório para a sua própria conta do GitHub.
-2.  Crie uma conta no [Render.com](https://render.com/).
-3.  No seu dashboard, clique em **"New +"** e selecione **"Web Service"**.
-4.  Conecte sua conta do GitHub e selecione o repositório do servidor.
-5.  Nas configurações, o Render geralmente detecta que é um projeto Node.js e preenche os comandos automaticamente:
-    * **Build Command:** `npm install`
-    * **Start Command:** `node server.js`
-6.  Clique em **"Create Web Service"**. Após o deploy, o Render fornecerá uma URL pública (ex: `https://meu-servidor.onrender.com`).
-7.  No seu projeto Godot, configure a URL de conexão para `wss://meu-servidor.onrender.com` (note o **wss://** para conexões seguras).
+``sh
+git clone https://github.com/welson-rodrigues/GodotWebSocketMultiplayer
 
-## Licença
+``
+2. Navigate to the project folder:
 
-Este projeto é distribuído sob a licença MIT.
+``sh
+cd GodotWebSocketMultiplayer
+
+```
+3. Install the necessary dependencies:
+
+``sh
+npm install
+
+```
+4. Start the server:
+
+``sh
+node server.js
+
+```
+
+By default, the server will run on port `9090`. Your Godot client should connect to `ws://localhost:9090`.
+
+### 2. Online Deployment (for Production)
+
+This server is ready to be hosted on various "Platform as a Service" (PaaS) platforms.
+
+#### Example with Render.com
+
+Render.com offers a free plan ideal for hosting this type of server. 1. Fork this repository to your own GitHub account.
+
+2. Create an account on [Render.com](https://render.com/).
+
+3. In your dashboard, click on **"New +"** and select **"Web Service"**.
+
+4. Connect your GitHub account and select the server repository.
+
+5. In the settings, Render usually detects that it is a Node.js project and automatically fills in the commands:
+
+* **Build Command:** `npm install`
+* **Start Command:** `node server.js`
+6. Click on **"Create Web Service"**. After deployment, Render will provide a public URL (e.g., `https://my-server.onrender.com`).
+
+7. In your Godot project, configure the connection URL to `wss://my-server.onrender.com` (note the **wss://** for secure connections).
+
+License
+
+This project is distributed under the MIT License.
 
 ---
-*Criado por Zee GameDev*
+*Created by Zee GameDev
