@@ -54,8 +54,8 @@ const playerlist = {
         let player = {
             uuid,
             room: roomCode,
-            x: isFirstPlayer ? 550 : 700,
-            y: 300,
+            x: isFirstPlayer ? 2 : 4,
+            y: 10,
             z: 0,
         };
 
