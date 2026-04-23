@@ -57,6 +57,9 @@ const playerlist = {
             x: isFirstPlayer ? 2 : 4,
             y: 10,
             z: 0,
+            rotx: 0,
+            roty: 45,
+            bubble: "Joined",
         };
 
         this.players.push(player);
@@ -64,12 +67,15 @@ const playerlist = {
     },
     
     // Atualiza a posição de um jogador específico
-    update: function(uuid, newX, newY, newZ) {
+    update: function(uuid, newX, newY, newZ, newRX, newRY, newChat) {
         const player = this.get(uuid);
         if (player) {
             player.x = newX;
             player.y = newY;
             player.z = newZ;
+            player.rotx = newRX;
+            player.roty = newRY;
+            player.bubble = newChat;
         }
     },
     
@@ -221,7 +227,10 @@ wss.on("connection", (socket) => {
                                     uuid: uuid,
                                     x: data.content.x,
                                     y: data.content.y,
-                                    z: data.content.z
+                                    z: data.content.z,
+                                    rotx: data.content.rotx,
+                                    roty: data.content.roty,
+                                    bubble: data.content.bubble,
                                 }
                             }));
                         }
