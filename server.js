@@ -12,7 +12,7 @@ const { v4: uuidv4 } = require("uuid"); // Gera IDs únicos para identificar cad
 const app = express();
 const PORT = process.env.PORT || 9090;
 const server = app.listen(PORT, () => {
-    console.log(`Servidor iniciado na porta: ${PORT}`);
+    console.log(`Server started on port: ${PORT}`);
 });
 
 // Cria o servidor WebSocket em cima do servidor HTTP
@@ -96,7 +96,7 @@ const playerlist = {
 wss.on("connection", (socket) => {
     const uuid = uuidv4();  // Gera ID único para o cliente
     socket.uuid = uuid;
-    console.log(`Cliente conectado: ${uuid}`);
+    console.log(`Connected Client: ${uuid}`);
 
     // Envia o UUID para o cliente assim que ele conecta
     socket.send(JSON.stringify({ 
@@ -112,7 +112,7 @@ wss.on("connection", (socket) => {
         try { 
             data = JSON.parse(message.toString()); 
         } catch (err) { 
-            console.error("Erro ao parsear mensagem:", err);
+            console.error("Error while parsing message:", err);
             return; 
         }
 
@@ -127,7 +127,7 @@ wss.on("connection", (socket) => {
                 // Adiciona o jogador à lista
                 const newPlayer = playerlist.add(uuid, newRoomId);
                 
-                console.log(`Sala ${newRoomId} criada pelo jogador ${uuid}`);
+                console.log(`Sala ${newRoomId} created by the player ${uuid}`);
                 
                 // Responde ao cliente com o código da sala
                 socket.send(JSON.stringify({ 
@@ -161,7 +161,7 @@ wss.on("connection", (socket) => {
                 
                 const newPlayer = playerlist.add(uuid, socket.roomId);
                 
-                console.log(`Jogador ${uuid} entrou na sala ${socket.roomId}`);
+                console.log(`player ${uuid} entered the room. ${socket.roomId}`);
                 
                 // Informa o jogador que entrou com sucesso
                 socket.send(JSON.stringify({ 
@@ -198,7 +198,7 @@ wss.on("connection", (socket) => {
                 // Quando há 2 ou mais jogadores na sala, começa o jogo
                 // Troque o "length >= 2" pelo número de jogadores que você quer na sala
                 if (Object.keys(roomToJoin.players).length >= 2) {
-                    console.log(`Sala ${socket.roomId} atingiu o número de jogadores. Começando o jogo!`);
+                    console.log(`room ${socket.roomId} The number of players has been reached. Let the game begin!`);
                     for (const clientUuid in roomToJoin.players) {
                         const client = roomToJoin.players[clientUuid];
                         if (client.readyState === WebSocket.OPEN) {
@@ -219,8 +219,7 @@ wss.on("connection", (socket) => {
                 if (room) {
                     // Repassa para os outros jogadores da sala
                     for (const clientUuid in room.players) {
-                        const client = room.players[clientUuid];
-                        if (client !== socket && client.readyState === WebSocket.OPEN) {
+       The number of players has been reached. Let the game begin!                       if (client !== socket && client.readyState === WebSocket.OPEN) {
                             client.send(JSON.stringify({
                                 cmd: "update_position",
                                 content: {
@@ -287,7 +286,7 @@ wss.on("connection", (socket) => {
             // Remove a sala se ela ficou vazia
             if (Object.keys(room.players).length === 0) {
                 rooms.delete(socket.roomId);
-                console.log(`Sala ${socket.roomId} vazia e removida.`);
+                console.log(`room ${socket.roomId} empty and removed.`);
             }
         }
     });
