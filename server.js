@@ -219,7 +219,8 @@ wss.on("connection", (socket) => {
                 if (room) {
                     // Repassa para os outros jogadores da sala
                     for (const clientUuid in room.players) {
-        if (client !== socket && client.readyState === WebSocket.OPEN) {
+                        const client = room.players[clientUuid];
+                        if (client !== socket && client.readyState === WebSocket.OPEN) {
                             client.send(JSON.stringify({
                                 cmd: "update_position",
                                 content: {
